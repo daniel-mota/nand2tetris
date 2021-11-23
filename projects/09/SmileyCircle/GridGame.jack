@@ -1,0 +1,42 @@
+class GridGame {
+    field Grid grid;
+    field Smiley smiley;
+    field int direction;
+
+    constructor GridGame new() {
+        let smiley = Smiley.new();
+        let grid = Grid.new();
+        return this;
+    }
+
+    method void dispose() {
+        do smiley.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void run() {
+        var char key; // currently pressed key
+        var boolean exit;
+        let exit = false;
+
+        while (~exit) {
+            // wait for key to be pressed
+            while (key = 0) {
+                let key = Keyboard.keyPressed();
+                do smiley.moveSmiley(0); 
+            }
+            if (key = 81)  { let exit = true; }     // q key
+            if (key = 131) { let direction = 1; }   // up arrow
+            if (key = 133) { let direction = 2; }   // down arrow
+            if (key = 130) { let direction = 3; }   // left arrow
+            if (key = 132) { let direction = 4; }   // right arrow
+            while (~(key = 0)) {
+                let key = Keyboard.keyPressed();
+                do smiley.moveSmiley(0); 
+            }
+            do smiley.moveSmiley(direction);
+        }
+        return;
+    }
+}

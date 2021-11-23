@@ -1,0 +1,95 @@
+/** Implements a bitmapped smiley face. */
+class Smiley {
+    field int location;
+
+    /** Constructs a new smiley face. */
+    constructor Smiley new() {
+        let location = (16384 + 3);
+        do draw();
+        return this;
+    }
+
+    /** Disposes of the smiley. */
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void moveSmiley(int direction) {
+        if (direction = 1) { do moveUp(); }
+        if (direction = 2) { do moveDown(); }
+        if (direction = 3) { do moveLeft(); }
+        if (direction = 4) { do moveRight(); }
+        do Sys.wait(5);
+        return;
+    }
+
+    method void moveRight() {
+        do deleteSmiley();
+        let location = location + 8;
+        do draw();
+        return;
+    }
+
+    method void moveUp() {
+        do deleteSmiley();
+        let location = location - 4096 - (32 * 5);
+        do draw();
+        return;
+    }
+
+    method void moveDown() {
+        do deleteSmiley();
+        let location = location + 4096 + (32 * 5);
+        do draw();
+        return;
+    }
+
+    method void moveLeft() {
+        do deleteSmiley();
+        let location = location - 8;
+        do draw();
+        return;
+    }
+
+    method void deleteSmiley() {
+        do Memory.poke(location+0, 0);
+        do Memory.poke(location+32, 0);
+        do Memory.poke(location+64, 0);
+        do Memory.poke(location+96, 0);
+        do Memory.poke(location+128, 0);
+        do Memory.poke(location+160, 0);
+        do Memory.poke(location+192, 0);
+        do Memory.poke(location+224, 0);
+        do Memory.poke(location+256, 0);
+        do Memory.poke(location+288, 0);
+        do Memory.poke(location+320, 0);
+        do Memory.poke(location+352, 0);
+        do Memory.poke(location+384, 0);
+        do Memory.poke(location+416, 0);
+        do Memory.poke(location+448, 0);
+        do Memory.poke(location+480, 0);
+        return;
+    }
+
+    /** Draws the smiley on the screen. */
+    method void draw() {
+        do Memory.poke(location+0, 2016);
+        do Memory.poke(location+32, 6168);
+        do Memory.poke(location+64, 8196);
+        do Memory.poke(location+96, 16386);
+        do Memory.poke(location+128, 18018);
+        do Memory.poke(location+160, -31135);
+        do Memory.poke(location+192, -32767);
+        do Memory.poke(location+224, -32767);
+        do Memory.poke(location+256, -32767);
+        do Memory.poke(location+288, -28663);
+        do Memory.poke(location+320, -30703);
+        do Memory.poke(location+352, 18402);
+        do Memory.poke(location+384, 16386);
+        do Memory.poke(location+416, 8196);
+        do Memory.poke(location+448, 6168);
+        do Memory.poke(location+480, 2016);
+        return;
+    }
+}

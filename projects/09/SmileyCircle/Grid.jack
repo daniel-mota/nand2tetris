@@ -1,0 +1,88 @@
+class Grid {
+    field int position, vertLinePos; // declare where smiley is stored
+    field Smiley smiley;
+    field int memAddress;
+    field int current;
+
+    constructor Grid new() {
+        let memAddress = (16384 + 4);
+        do drawGrid();
+        return this;
+    }
+
+    /** Draws grid with smiley in it */
+    method void drawGrid() {
+        do vertLine(8); // first grid
+        do vertLine(520);
+        do vertLine(8 + (512 * 2));
+        do vertLine(8 + (512 * 3));
+        do vertLine(8 + (512 * 4));
+        do vertLine(8 + (512 * 5));
+        do vertLine(8 + (512 * 6));
+        do vertLine(8 + (512 * 7));
+        do vertLine(8 + (512 * 8));
+        do vertLine(8 + (512 * 9));
+        do vertLine(8 + (512 * 10));
+        do vertLine(8 + (512 * 11));
+        do vertLine(8 + (512 * 12));
+        do vertLine(8 + (512 * 13));
+        do vertLine(8 + (512 * 14));
+        do vertLine(8 + (512 * 15));
+        do vertLine(16 + (512 * 0));
+        do vertLine(16 + (512 * 1));
+        do vertLine(16 + (512 * 2));
+        do vertLine(16 + (512 * 3));
+        do vertLine(16 + (512 * 4));
+        do vertLine(16 + (512 * 5));
+        do vertLine(16 + (512 * 6));
+        do vertLine(16 + (512 * 7));
+        do vertLine(16 + (512 * 8));
+        do vertLine(16 + (512 * 9));
+        do vertLine(16 + (512 * 10));
+        do vertLine(16 + (512 * 11));
+        do vertLine(16 + (512 * 12));
+        do vertLine(16 + (512 * 13));
+        do vertLine(16 + (512 * 14));
+        do vertLine(16 + (512 * 15));
+        do vertLine(24 + (512 * 0));
+        do vertLine(24 + (512 * 1));
+        do vertLine(24 + (512 * 2));
+        do vertLine(24 + (512 * 3));
+        do vertLine(24 + (512 * 4));
+        do vertLine(24 + (512 * 5));
+        do vertLine(24 + (512 * 6));
+        do vertLine(24 + (512 * 7));
+        do vertLine(24 + (512 * 8));
+        do vertLine(24 + (512 * 9));
+        do vertLine(24 + (512 * 10));
+        do vertLine(24 + (512 * 11));
+        do vertLine(24 + (512 * 12));
+        do vertLine(24 + (512 * 13));
+        do vertLine(24 + (512 * 14));
+        do vertLine(24 + (512 * 15));
+
+        do Screen.drawRectangle(0, 128, 511, 132);
+        return;
+    }
+
+    method void vertLine(int location) {
+        let memAddress = 16384+location;
+        do Memory.poke(memAddress+0, 960);
+        do Memory.poke(memAddress+32, 960);
+        do Memory.poke(memAddress+64, 960);
+        do Memory.poke(memAddress+96, 960);
+        do Memory.poke(memAddress+128, 960);
+        do Memory.poke(memAddress+160, 960);
+        do Memory.poke(memAddress+192, 960);
+        do Memory.poke(memAddress+224, 960);
+        do Memory.poke(memAddress+256, 960);
+        do Memory.poke(memAddress+288, 960);
+        do Memory.poke(memAddress+320, 960);
+        do Memory.poke(memAddress+352, 960);
+        do Memory.poke(memAddress+384, 960);
+        do Memory.poke(memAddress+416, 960);
+        do Memory.poke(memAddress+448, 960);
+        do Memory.poke(memAddress+480, 960);
+        return;
+    }
+}   
